@@ -9,6 +9,8 @@ public class JetPackScript : MonoBehaviour {
 	ParticleSystem bulletParticle;
 	public float particleRotation;
 	public float particlePosition;
+	
+	bool isOnTop;
 	// Use this for initialization
 	void Start () {
 		Quaternion bulletRotation = Quaternion.Euler(new Vector3(particleRotation,0.0f,0.0f));
@@ -19,22 +21,34 @@ public class JetPackScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(PlayerMovement.currentHeight > 3.0f){
+			isOnTop = true;
+		}else{
+			isOnTop = false;
+		}
+		
 		if(Input.GetKeyDown(KeyCode.Space)){
-			this.transform.rigidbody.AddForce(transform.up * jumpForce);
+			if(!isOnTop){
+				FlyJetpack(jumpForce);
+			}
 		}	
 		if(Input.GetKey(KeyCode.Space)){
-			this.transform.rigidbody.AddForce(transform.up * flyForce);
+			if(!isOnTop){
+				FlyJetpack(flyForce);
+			}
 			bulletParticle.transform.position =this.transform.position;
 			bulletParticle.enableEmission = true;
+			
 		}
+		
 		
 	}
 	
-	 
-	 
-	void OnCollisionEnter (Collision theCollision) {
- 	
-
+	
+	void FlyJetpack(float a)
+	{
+		this.transform.rigidbody.AddForce(transform.up * a);
 	}
+	
 }
 

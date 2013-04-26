@@ -4,15 +4,17 @@ using System.Collections;
 public class JPJRCamera : MonoBehaviour {
 	
 	public GameObject targ;
-	public float movementSpeed = 0.2f;
-	// Use this for initialization
-	public float minmax;
+	public float minmaxY;
+	public float minmaxZ;
 	void Start () {
-		minmax = transform.position.y;
+		minmaxY = transform.position.y;
+		minmaxZ = transform.position.z;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = new Vector3(transform.position.x,Mathf.Clamp(transform.position.y, minmax, minmax), transform.position.z);
+		transform.position = new Vector3(targ.transform.position.x + 5.0f,
+								Mathf.Clamp(transform.position.y, minmaxY, minmaxY),
+								Mathf.Clamp(transform.position.z, minmaxZ, minmaxZ));
 	}
 }

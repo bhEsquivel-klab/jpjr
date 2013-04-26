@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour {
 	
 	public static float distanceTraveled;
 	public static float minmaxZ;
-	
+	public static float currentHeight;
+	public static bool hit;
 	
 	void Start () {
 		minmaxZ = transform.position.z;
@@ -20,17 +21,25 @@ public class PlayerMovement : MonoBehaviour {
 		this.rigidbody.velocity += transform.forward * 0.01f;
 		this.rigidbody.freezeRotation = true;
 		
-		transform.position = new Vector3 (transform.position.x,  transform.position.y, Mathf.Clamp(transform.position.z, minmaxZ, minmaxZ));
+	  	float targetClampZ =  Mathf.Clamp(transform.position.z, minmaxZ, minmaxZ);
+		float targetClampY =  Mathf.Clamp(transform.position.y, -4.1f, 3.3f);
+        transform.position = new Vector3(transform.position.x, targetClampY, targetClampZ);
+		
+		
 		distanceTraveled = transform.localPosition.x;
+		currentHeight = transform.localPosition.y;
 		
 		//transform.rigidbody.velocity = new Vector3(0,0,0);
 		transform.rigidbody.velocity = new Vector3(Mathf.Clamp(transform.rigidbody.velocity.x, 2, 4), transform.rigidbody.velocity.y, transform.rigidbody.velocity.z);
-		
 		
 	}
 	
 	void OnCollisionEnter(Collision theCollision){
 		theCollision.collider.material.dynamicFriction = 0;
+		if(theCollision.gameObject.name == "ObstacleVert(Clone)"){
+			hit = true;
+		}	
+		
 	}
 	void OnCollisionStay(Collision theCollision)
 	{
