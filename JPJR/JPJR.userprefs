@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Player/PlayerScript/PlayerMovement.cs">
+    <Files>
+      <File FileName="Assets/Player/PlayerScript/PlayerMovement.cs" Line="32" Column="63" />
+      <File FileName="Assets/Platform/PlatformManager.cs" Line="22" Column="1" />
+      <File FileName="Assets/Obstacles/ObstacleManager.cs" Line="28" Column="4" />
+      <File FileName="Assets/JPJRCamera/Scripts/JPJRCamera.cs" Line="14" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
