@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour {
 	
+	public GameObject GameScene;
+	public GameObject GameOverMenu;
+	
 	public string sceneName;
 	public float movementSpeed = 0.1f;
 	public float jumpSpeed = 0.2f;
@@ -17,6 +20,8 @@ public class PlayerMovement : MonoBehaviour {
 	
 	public GameObject stars;
 	ParticleSystem explosionParticle;
+	
+	private Vector3 playerPos;
 	
 	
 	void Start () {
@@ -34,16 +39,23 @@ public class PlayerMovement : MonoBehaviour {
 			this.rigidbody.freezeRotation = true;
 		
 		//Clamp position
+	
 	  	float targetClampZ =  Mathf.Clamp(transform.position.z, minmaxZ, minmaxZ);
 		float targetClampY =  Mathf.Clamp(transform.position.y, -4.6f, 3.3f);
-        transform.position = new Vector3(transform.position.x, targetClampY, targetClampZ);
+		playerPos.x =transform.position.x;
+		playerPos.y = targetClampY;
+		playerPos.z = targetClampZ;
+        transform.position = playerPos;
 		
 		//update distancetraveled and height
 		distanceTraveled = transform.localPosition.x;
 		currentHeight = transform.localPosition.y;
 		
 		//
-		transform.rigidbody.velocity = new Vector3(Mathf.Clamp(transform.rigidbody.velocity.x, 2, 4), transform.rigidbody.velocity.y, transform.rigidbody.velocity.z);
+		playerPos.x = Mathf.Clamp(transform.rigidbody.velocity.x, 2, 4);
+		playerPos.y =  transform.rigidbody.velocity.y;
+		playerPos.z = transform.rigidbody.velocity.z;
+		transform.rigidbody.velocity = playerPos;
 		}else{
 			this.gameObject.rigidbody.velocity = Vector3.zero;
 			this.gameObject.rigidbody.angularVelocity = Vector3.zero;
@@ -78,6 +90,8 @@ public class PlayerMovement : MonoBehaviour {
 	
 	void GameOver()
 	{
+		//GameScene.gameObject.SetActiveRecursively(false);
+		//GameOverMenu.gameObject.SetActiveRecursively(true);
 		AutoFade.LoadLevel(sceneName ,1,1,Color.white);
 	}
 	

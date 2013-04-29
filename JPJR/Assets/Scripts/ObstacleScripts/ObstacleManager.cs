@@ -9,6 +9,8 @@ public class ObstacleManager : MonoBehaviour {
 	ArrayList obstacles; 
 	public Vector3 minSize, maxSize;
 	
+	private Vector3 obsPos;
+	
 	void Start () {
 		obstacles = new ArrayList();	
 		for(int ctr = 0; ctr <  numberOfObjects; ctr++){
@@ -23,8 +25,12 @@ public class ObstacleManager : MonoBehaviour {
 	}
 
 	void Update () {
+		
 		foreach(GameObject obs in obstacles){
-			obs.transform.position = new Vector3 (obs.transform.position.x, obs.transform.position.y, Mathf.Clamp(obs.transform.position.z, PlayerMovement.minmaxZ, PlayerMovement.minmaxZ));
+			obsPos.x = obs.transform.position.x;
+			obsPos.y = obs.transform.position.y;
+			obsPos.z = Mathf.Clamp(obs.transform.position.z, PlayerMovement.minmaxZ, PlayerMovement.minmaxZ);
+			obs.transform.position = obsPos;
 		}
 		
 		Recycle();
@@ -35,8 +41,10 @@ public class ObstacleManager : MonoBehaviour {
 		if((currentObs.transform.localPosition.x + 10) < PlayerMovement.distanceTraveled){
 				GameObject obsRemove = currentObs;
 				float newPositionX =  PlayerMovement.distanceTraveled + recycleOffset;
-				obsRemove.transform.position = new Vector3 (Random.Range(newPositionX, newPositionX + maxSize.x),
-				Random.Range(minSize.y, maxSize.y), 0.0f);
+				obsPos.x = 	Random.Range(newPositionX, newPositionX + maxSize.x);
+				obsPos.y =  Random.Range(minSize.y, maxSize.y);
+				obsPos.z = 0.0f;
+				obsRemove.transform.position = obsPos;
 				obstacles.Remove(currentObs);
 				obstacles.Add(obsRemove.gameObject);
 				

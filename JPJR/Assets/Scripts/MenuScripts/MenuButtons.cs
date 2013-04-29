@@ -12,7 +12,7 @@ public class MenuButtons : MonoBehaviour {
 	void OnClick()
 	{
 		if(this.gameObject.name == "Start Game" || this.gameObject.name == "BackToMain"){
-			AutoFade.LoadLevel(sceneName ,3,1,Color.gray);
+			AutoFade.LoadLevel(sceneName ,1,1,Color.gray);
 			Debug.Log("objectName: "+this.gameObject.name);
 		}else if(this.gameObject.name == "Option"){
 			OptionMenu.gameObject.SetActiveRecursively(true);

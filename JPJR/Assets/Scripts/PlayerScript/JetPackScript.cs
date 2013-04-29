@@ -12,6 +12,7 @@ public class JetPackScript : MonoBehaviour {
 	public float particleRotation;
 	public float particlePosition;
 	
+	
 	bool isOnTop;
 	// Use this for initialization
 	void Start () {
