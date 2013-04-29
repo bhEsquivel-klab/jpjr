@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour {
 	
@@ -8,21 +9,29 @@ public class PlayerMovement : MonoBehaviour {
 	public float jumpSpeed = 0.2f;
 	public float jumpForce = 300.0f;
 	bool moving;
-	//bool onGround;
+	bool gameOver;
 	
 	public static float distanceTraveled;
 	public static float minmaxZ;
 	public static float currentHeight;
 	
+	public GameObject stars;
+	ParticleSystem explosionParticle;
+	
+	
 	void Start () {
 		minmaxZ = transform.position.z;
+		GameObject starInstance = (GameObject)Instantiate(stars,this.transform.position ,this.transform.rotation);
+		explosionParticle = starInstance.GetComponent<ParticleSystem>();
+		explosionParticle.enableEmission = false;
 	}
 	
 	void Update () {
 		
 		//run Mode
-		this.rigidbody.velocity += transform.forward * 0.01f;
-		this.rigidbody.freezeRotation = true;
+		if(!gameOver){
+			this.rigidbody.velocity += transform.forward * 0.01f;
+			this.rigidbody.freezeRotation = true;
 		
 		//Clamp position
 	  	float targetClampZ =  Mathf.Clamp(transform.position.z, minmaxZ, minmaxZ);
@@ -35,14 +44,20 @@ public class PlayerMovement : MonoBehaviour {
 		
 		//
 		transform.rigidbody.velocity = new Vector3(Mathf.Clamp(transform.rigidbody.velocity.x, 2, 4), transform.rigidbody.velocity.y, transform.rigidbody.velocity.z);
-		
+		}else{
+			this.gameObject.rigidbody.velocity = Vector3.zero;
+			this.gameObject.rigidbody.angularVelocity = Vector3.zero;
+		}
 	}
 	
 	void OnCollisionEnter(Collision theCollision){
 		theCollision.collider.material.dynamicFriction = 0;
 		if(theCollision.gameObject.name == "ObstacleVert(Clone)"){
-			AutoFade.LoadLevel(sceneName ,2,1,Color.gray);
+			explosionParticle.transform.position =this.transform.position;
+			explosionParticle.enableEmission = true;
 			Debug.Log("Hit Obstacles");
+			gameOver = true;
+			GameOver();
 		}	
 		
 	}
@@ -60,5 +75,11 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		
     }
+	
+	void GameOver()
+	{
+		AutoFade.LoadLevel(sceneName ,1,1,Color.white);
+	}
+	
 	
 }
