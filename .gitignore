@@ -33,3 +33,27 @@ profile
 *.BASE
 *.MINE
 *.OTHER
+
+# monodevelop project files
+JPJR/Library
+JPJR/Temp
+JPJR/Assembly-CSharp-Editor-vs.csproj
+JPJR/Assembly-CSharp-Editor.csproj
+JPJR/Assembly-CSharp-firstpass-vs.csproj
+JPJR/Assembly-CSharp-firstpass.pidb
+JPJR/Assembly-CSharp-vs.csproj
+JPJR/Assembly-CSharp.csproj
+JPJR/Assembly-CSharp.pidb
+JPJR/Assembly-UnityScript.pidb
+JPJR/assembly-csharp-firstpass.csproj
+JPJR/assembly-unityscript-vs.unityproj
+JPJR/assembly-unityscript.unityproj
+JPJR/Assembly-UnityScript-Editor-firstpass-vs.unityproj
+JPJR/Assembly-UnityScript-Editor-firstpass.unityproj
+JPJR/Assembly-UnityScript-firstpass-vs.unityproj
+JPJR/Assembly-UnityScript-firstpass.unityproj
+JPJR/Assembly-UnityScript-vs.unityproj
+JPJR/Assembly-UnityScript.unityproj
+JPJR/RedsRevenge.userprefs
+JPJR/Assembly-Boo-vs.booproj
+JPJR/Assembly-Boo.booproj
