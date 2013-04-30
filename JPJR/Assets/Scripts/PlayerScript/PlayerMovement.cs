@@ -7,12 +7,11 @@ public class PlayerMovement : MonoBehaviour {
 	public GameObject GameScene;
 	public GameObject GameOverMenu;
 	
-	public string sceneName;
 	public float movementSpeed = 0.1f;
 	public float jumpSpeed = 0.2f;
 	public float jumpForce = 300.0f;
 	bool moving;
-	bool gameOver;
+	public bool gameOver;
 	
 	public float distanceTraveled;
 	public float minmaxZ;
@@ -23,8 +22,9 @@ public class PlayerMovement : MonoBehaviour {
 	
 	private Vector3 playerPos;
 	
-	
+
 	void Start () {
+
 		minmaxZ = transform.position.z;
 		GameObject starInstance = (GameObject)Instantiate(stars,this.transform.position ,this.transform.rotation);
 		explosionParticle = starInstance.GetComponent<ParticleSystem>();
@@ -69,8 +69,7 @@ public class PlayerMovement : MonoBehaviour {
 			explosionParticle.transform.position =this.transform.position;
 			explosionParticle.enableEmission = true;
 			Debug.Log("Hit Obstacles");
-			//gameOver = true;
-			//GameOver();
+			gameOver = true;
 		}	
 		
 	}
@@ -88,13 +87,6 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		
     }
-	
-	void GameOver()
-	{
-		//GameScene.gameObject.SetActiveRecursively(false);
-		//GameOverMenu.gameObject.SetActiveRecursively(true);
-		AutoFade.LoadLevel(sceneName ,1,1,Color.white);
-	}
 	
 	
 }

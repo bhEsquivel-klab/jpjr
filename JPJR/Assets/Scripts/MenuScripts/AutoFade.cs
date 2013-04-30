@@ -51,6 +51,7 @@ public class AutoFade : MonoBehaviour
  
     private IEnumerator Fade(float aFadeOutTime, float aFadeInTime, Color aColor)
     {
+		
         float t = 0.0f;
         while (t<1.0f)
         {
