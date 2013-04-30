@@ -15,8 +15,8 @@ public class PlayerManagerScript : MonoBehaviour {
 	}
 	
 	void Update(){
-		
-		if(player.gameOver){
+		bool curGameOver = player.GetGameState();
+		if(curGameOver){
 			if(playerObj){
 				Destroy(player.gameObject);
 				StartCoroutine(GameOver());

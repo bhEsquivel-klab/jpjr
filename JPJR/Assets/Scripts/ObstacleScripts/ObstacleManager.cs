@@ -12,6 +12,7 @@ public class ObstacleManager : MonoBehaviour {
 	private Vector3 obsPos;
 	
 	private PlayerMovement player;
+	float minmaxZaxis;
 	
 	void Start () {
 			//Player object
@@ -19,11 +20,12 @@ public class ObstacleManager : MonoBehaviour {
 		player = playerObj.GetComponent<PlayerMovement>();
 		
 		obstacles = new ArrayList();	
+		minmaxZaxis = player.GetZLimit();
 		for(int ctr = 0; ctr <  numberOfObjects; ctr++){
 			Vector3 scale = new Vector3(
 			Random.Range(minSize.x, maxSize.x) ,
 			Random.Range(minSize.y, maxSize.y),
-				player.minmaxZ);
+				minmaxZaxis);
 			
 			GameObject newObstacle = (GameObject)Instantiate(prefab,scale, transform.rotation);
 			obstacles.Add(newObstacle.gameObject); 
@@ -37,7 +39,7 @@ public class ObstacleManager : MonoBehaviour {
 		foreach(GameObject obs in obstacles){
 			obsPos.x = obs.transform.position.x;
 			obsPos.y = obs.transform.position.y;
-			obsPos.z = Mathf.Clamp(obs.transform.position.z, player.minmaxZ,player.minmaxZ);
+			obsPos.z = Mathf.Clamp(obs.transform.position.z, minmaxZaxis,minmaxZaxis);
 			obs.transform.position = obsPos;
 		}
 		
@@ -46,9 +48,10 @@ public class ObstacleManager : MonoBehaviour {
 	
 	private void Recycle () {
 		GameObject currentObs = (GameObject)obstacles[0];
-		if((currentObs.transform.localPosition.x + 10) < player.distanceTraveled){
+		float distance = player.GetDistanceTraveled();
+		if((currentObs.transform.localPosition.x + 10) < distance){
 				GameObject obsRemove = currentObs;
-				float newPositionX =  player.distanceTraveled + recycleOffset;
+				float newPositionX = distance + recycleOffset;
 				obsPos.x = 	Random.Range(newPositionX, newPositionX + maxSize.x);
 				obsPos.y =  Random.Range(minSize.y, maxSize.y);
 				obsPos.z = 0.0f;

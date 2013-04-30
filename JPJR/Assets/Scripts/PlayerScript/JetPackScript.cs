@@ -15,7 +15,6 @@ public class JetPackScript : MonoBehaviour {
 	
 	bool isOnTop;
 	
-	
 	public float speed = 6.0f;
 	public float jumpSpeed = 8.0f;
 	public float gravity = 20.0f;
@@ -35,26 +34,15 @@ public class JetPackScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		
-		if(player.currentHeight > 3.0f){
+		float height = player.GetCurrentHeight();
+		if(height > 8.0f){
 			isOnTop = true;
 		}else{
 			isOnTop = false;
 		}
 		
-		if(Input.GetKey(KeyCode.Space) && !isOnTop)
-        {
-      		if(!isOnTop){
-				FlyJetpack(flyForce);
-			}else{
-				this.transform.rigidbody.velocity = Vector3.zero;
-				this.transform.rigidbody.AddForce(Vector3.down * flyForce);
-				
-			}
-			bulletParticle.transform.position =this.transform.position;
-			bulletParticle.enableEmission = true;
-			AudioSource.PlayClipAtPoint(jumpSound, this.transform.position);
-        }
+		ApplyJump();
+		
             
         
 	}
@@ -62,9 +50,28 @@ public class JetPackScript : MonoBehaviour {
 	
 	void FlyJetpack(float a)
 	{
-		//player.transform.Translate(Vector3.up * Time.deltaTime* 10.0f);
-		// this.transform.Translate(Vector3.up * Time.deltaTime*a);
+		//player.transform.Translate(Vector3.up * Time.deltaTime* 20.0f, Space.World);
+		//this.transform.Translate(Vector3.up * Time.deltaTime*20.0f);
 		this.transform.rigidbody.AddForce(Vector3.up * a);
+	}
+	
+	private void ApplyJump(){
+		if(Input.GetKey(KeyCode.Space) && !isOnTop)
+        {
+      		if(!isOnTop){
+				FlyJetpack(flyForce);
+			}else{
+				this.transform.rigidbody.velocity = Vector3.zero;
+				this.transform.rigidbody.AddForce(Vector3.down * flyForce);
+			}
+			JumpAnimation();
+        }
+	}
+	
+	private void JumpAnimation(){
+		bulletParticle.transform.position =this.transform.position;
+		bulletParticle.enableEmission = true;
+		AudioSource.PlayClipAtPoint(jumpSound, this.transform.position);
 	}
 	
 }

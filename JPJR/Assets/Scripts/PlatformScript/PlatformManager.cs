@@ -32,7 +32,8 @@ public class PlatformManager : MonoBehaviour {
 	
 	void Update () {
 			GameObject currentPlatform = (GameObject)platforms[0];
-			if( (currentPlatform.transform.position.x + 10)  < player.distanceTraveled)
+			float distance = player.GetDistanceTraveled();
+			if( (currentPlatform.transform.position.x + 10)  < distance)
 			{
 				GameObject platformForRemoval = currentPlatform;
 				GameObject lastPlatform = (GameObject)platforms[numberOfWalls-1];

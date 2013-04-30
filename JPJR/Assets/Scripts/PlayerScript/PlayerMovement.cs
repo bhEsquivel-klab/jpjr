@@ -11,11 +11,11 @@ public class PlayerMovement : MonoBehaviour {
 	public float jumpSpeed = 0.2f;
 	public float jumpForce = 300.0f;
 	bool moving;
-	public bool gameOver;
 	
-	public float distanceTraveled;
-	public float minmaxZ;
-	public float currentHeight;
+	private bool gameOver;
+	private float distanceTraveled;
+	private float minmaxZ;
+	private float currentHeight;
 	
 	public GameObject stars;
 	ParticleSystem explosionParticle;
@@ -42,9 +42,9 @@ public class PlayerMovement : MonoBehaviour {
 		//Clamp position
 	
 	  	float targetClampZ =  Mathf.Clamp(transform.position.z, minmaxZ, minmaxZ);
-		float targetClampY =  Mathf.Clamp(transform.position.y, -4.5f, 3.3f);
+		//float targetClampY =  Mathf.Clamp(transform.position.y, -4.5f, 3.3f);
 		playerPos.x =transform.position.x;
-		playerPos.y = targetClampY;
+		playerPos.y = transform.position.y;
 		playerPos.z = targetClampZ;
         transform.position = playerPos;
 		
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour {
 			explosionParticle.transform.position =this.transform.position;
 			explosionParticle.enableEmission = true;
 			Debug.Log("Hit Obstacles");
-			gameOver = true;
+			//gameOver = true;
 		}	
 		
 	}
@@ -88,5 +88,20 @@ public class PlayerMovement : MonoBehaviour {
 		
     }
 	
+	public float GetDistanceTraveled(){
+		return distanceTraveled;
+	}
+	public bool GetGameState(){
+		return gameOver;
+	}
+	public float GetCurrentHeight(){
+		return currentHeight;
+	}
+	public Vector3 GetCurrentPosition(){
+		return this.transform.position;
+	}
+	public float GetZLimit(){
+		return minmaxZ;
+	}
 	
 }

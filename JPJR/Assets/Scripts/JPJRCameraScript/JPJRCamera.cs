@@ -22,8 +22,10 @@ public class JPJRCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(!player.gameOver){
-			pos.x = player.transform.position.x + 5.0f;
+		bool gameOver = player.GetGameState();
+		if(!gameOver){
+			Vector3 playerPos = player.GetCurrentPosition();
+			pos.x = playerPos.x + 5.0f;
 			pos.y = Mathf.Clamp(transform.position.y, minmaxY, minmaxY);
 			pos.z = Mathf.Clamp(transform.position.z, minmaxZ, minmaxZ);
 			transform.position = pos;
