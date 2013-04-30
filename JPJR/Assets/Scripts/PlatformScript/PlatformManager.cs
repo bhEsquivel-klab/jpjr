@@ -7,6 +7,7 @@ public class PlatformManager : MonoBehaviour {
 	ArrayList platforms; 
 	public int numberOfWalls;
 	private Vector3 platformPos;
+	private PlayerMovement player;
 	
 	void Awake () {
 		platforms = new ArrayList();
@@ -23,9 +24,15 @@ public class PlatformManager : MonoBehaviour {
 		
 	}
 	
+	void Start(){
+		//Player object
+		GameObject playerObj = GameObject.Find("Player");
+		player = playerObj.GetComponent<PlayerMovement>();
+	}
+	
 	void Update () {
 			GameObject currentPlatform = (GameObject)platforms[0];
-			if( (currentPlatform.transform.position.x + 10)  < PlayerMovement.distanceTraveled)
+			if( (currentPlatform.transform.position.x + 10)  < player.distanceTraveled)
 			{
 				GameObject platformForRemoval = currentPlatform;
 				GameObject lastPlatform = (GameObject)platforms[numberOfWalls-1];
