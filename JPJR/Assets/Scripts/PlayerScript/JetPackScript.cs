@@ -4,7 +4,7 @@ using System.Collections;
 public class JetPackScript : MonoBehaviour {
 	
 	public AudioClip jumpSound;
-	public float flyForce = 100.0f;
+	public float flyForce = 5.0f;
 	public GameObject bullets;
 	
 	ParticleSystem bulletParticle;
@@ -14,10 +14,6 @@ public class JetPackScript : MonoBehaviour {
 	private PlayerMovement player;
 	
 	bool isOnTop;
-	
-	public float speed = 6.0f;
-	public float jumpSpeed = 8.0f;
-	public float gravity = 20.0f;
 	
 	// Use this for initialization
 	void Start () {
@@ -33,37 +29,21 @@ public class JetPackScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		float height = player.GetCurrentHeight();
-		if(height > 8.0f){
-			isOnTop = true;
-		}else{
-			isOnTop = false;
-		}
-		
-		ApplyJump();
-		
-            
-        
+		ApplyJump(flyForce);
 	}
 	
 	
-	void FlyJetpack(float a)
+	void FlyJetpack(float force)
 	{
 		//player.transform.Translate(Vector3.up * Time.deltaTime* 20.0f, Space.World);
 		//this.transform.Translate(Vector3.up * Time.deltaTime*20.0f);
-		this.transform.rigidbody.AddForce(Vector3.up * a);
+		this.transform.rigidbody.AddForce(Vector3.up * force);
 	}
 	
-	private void ApplyJump(){
-		if(Input.GetKey(KeyCode.Space) && !isOnTop)
+	private void ApplyJump(float force){
+		if(Input.GetKey(KeyCode.Space))
         {
-      		if(!isOnTop){
-				FlyJetpack(flyForce);
-			}else{
-				this.transform.rigidbody.velocity = Vector3.zero;
-				this.transform.rigidbody.AddForce(Vector3.down * flyForce);
-			}
+			FlyJetpack(force);
 			JumpAnimation();
         }
 	}
@@ -75,4 +55,6 @@ public class JetPackScript : MonoBehaviour {
 	}
 	
 }
+
+
 
