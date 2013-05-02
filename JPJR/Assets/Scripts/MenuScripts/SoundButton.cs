@@ -18,7 +18,7 @@ public class SoundButton : MonoBehaviour {
 		if(currentName == bgmOnName){
 			soundSource.audio.Play();
 		}else{
-				soundSource.audio.Pause();
+			soundSource.audio.Pause();
 		}
 		
 	}
