@@ -1,6 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MenuScripts/SoundButton.cs">
+    <Files>
+      <File FileName="Assets/Scripts/PlayerScript/JetPackScript.cs" Line="54" Column="2" />
+      <File FileName="Assets/Scripts/PlayerScript/PlayerMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/JPJRCameraScript/JPJRCamera.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ObstacleScripts/ObstacleManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MenuScripts/RevealButtons.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MenuScripts/MenuButtons.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MenuScripts/SoundButton.cs" Line="11" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

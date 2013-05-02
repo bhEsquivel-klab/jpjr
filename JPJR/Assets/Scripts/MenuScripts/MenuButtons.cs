@@ -23,9 +23,6 @@ public class MenuButtons : MonoBehaviour {
 			OptionMenu.gameObject.SetActiveRecursively(false);
 			MainMenu.gameObject.SetActiveRecursively(true);
 			Debug.Log("objectName: "+this.gameObject.name);
-		}else if(this.gameObject.name == "SoundToggle"){
-			//target.GetComponentInChildren<UILabel>().text = text;
-			//this.gameObject.GetComponent<UISlicedSprite>().spriteName = iconName;
 		}
 		
 	}
