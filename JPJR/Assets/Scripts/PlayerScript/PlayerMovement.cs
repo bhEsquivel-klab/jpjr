@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour {
 			explosionParticle.transform.position =this.transform.position;
 			explosionParticle.enableEmission = true;
 			Debug.Log("Hit Obstacles");
-			//gameOver = true;
+			gameOver = true;
 		}	
 		
 	}
