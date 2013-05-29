@@ -22,11 +22,13 @@ public class PlayerMovement : MonoBehaviour {
 	
 	private Vector3 playerPos;
 	
+	public Transform parent;
 
 	void Start () {
 
 		minmaxZ = transform.position.z;
 		GameObject starInstance = (GameObject)Instantiate(stars,this.transform.position ,this.transform.rotation);
+		starInstance.transform.parent = parent;
 		explosionParticle = starInstance.GetComponent<ParticleSystem>();
 		explosionParticle.enableEmission = false;
 	}
@@ -69,7 +71,7 @@ public class PlayerMovement : MonoBehaviour {
 			explosionParticle.transform.position =this.transform.position;
 			explosionParticle.enableEmission = true;
 			Debug.Log("Hit Obstacles");
-			gameOver = true;
+			//gameOver = true;
 		}	
 		
 	}

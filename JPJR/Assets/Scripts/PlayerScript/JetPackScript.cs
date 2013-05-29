@@ -12,7 +12,7 @@ public class JetPackScript : MonoBehaviour {
 	public float particlePosition;
 	
 	private PlayerMovement player;
-	
+	public Transform parent;
 	bool isOnTop;
 	
 	// Use this for initialization
@@ -24,7 +24,9 @@ public class JetPackScript : MonoBehaviour {
 		Quaternion bulletRotation = Quaternion.Euler(new Vector3(particleRotation,0.0f,0.0f));
 		Vector3 bulletPosition = new Vector3(this.transform.position.x, this.transform.position.y, Mathf.Clamp(this.transform.position.z,particlePosition,particlePosition));
 		GameObject bulletInstance = (GameObject)Instantiate(bullets,bulletPosition ,bulletRotation);
+		bulletInstance.transform.parent = parent;
 		bulletParticle = bulletInstance.GetComponent<ParticleSystem>();
+		bulletParticle.enableEmission = false;
 	}
 	
 	// Update is called once per frame
@@ -54,6 +56,7 @@ public class JetPackScript : MonoBehaviour {
 		AudioSource.PlayClipAtPoint(jumpSound, this.transform.position);
 	}
 	
+
 }
 
 

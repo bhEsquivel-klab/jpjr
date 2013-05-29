@@ -1,15 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MenuScripts/SoundButton.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MenuScripts/RevealButtons.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerScript/JetPackScript.cs" Line="14" Column="32" />
-      <File FileName="Assets/Scripts/PlayerScript/PlayerMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/JPJRCameraScript/JPJRCamera.cs" Line="1" Column="1" />
+      <File FileName="Assets/Plugins/NGUI/Interaction/UIButtonPlayAnimation.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MenuScripts/PauseScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlatformScript/PlatformManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ObstacleScripts/ObstacleManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MenuScripts/RevealButtons.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MenuScripts/MenuButtons.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MenuScripts/SoundButton.cs" Line="21" Column="4" />
-      <File FileName="Assets/Scripts/SoundScript.cs" Line="7" Column="30" />
+      <File FileName="Assets/Scripts/PlayerScript/PlayerMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerScript/JetPackScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerScript/PlayerManagerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SoundScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerScript/JetpackRaycastScript.cs" Line="34" Column="23" />
+      <File FileName="Assets/Scripts/MenuScripts/AutoFade.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MenuScripts/MenuButtons.cs" Line="23" Column="1" />
+      <File FileName="Assets/Scripts/MenuScripts/RevealButtons.cs" Line="14" Column="118" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

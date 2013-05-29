@@ -8,6 +8,7 @@ public class PlatformManager : MonoBehaviour {
 	public int numberOfWalls;
 	private Vector3 platformPos;
 	private PlayerMovement player;
+	public Transform parent;
 	
 	void Awake () {
 		platforms = new ArrayList();
@@ -18,6 +19,7 @@ public class PlatformManager : MonoBehaviour {
 			platformPos.y = 0.0f;
 			platformPos.z = 0.0f;
 			GameObject newPlatform = (GameObject)Instantiate(targ,platformPos, targ.transform.rotation);
+			newPlatform.transform.parent = parent;
 			platforms.Add(newPlatform.gameObject); 
 			distanceOfWalls += 10.0f;
 		}

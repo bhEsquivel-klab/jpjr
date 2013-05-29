@@ -14,6 +14,8 @@ public class ObstacleManager : MonoBehaviour {
 	private PlayerMovement player;
 	float minmaxZaxis;
 	
+	public Transform parent;
+	
 	void Start () {
 			//Player object
 		GameObject playerObj = GameObject.Find("Player");
@@ -28,6 +30,7 @@ public class ObstacleManager : MonoBehaviour {
 				minmaxZaxis);
 			
 			GameObject newObstacle = (GameObject)Instantiate(prefab,scale, transform.rotation);
+			newObstacle.transform.parent = parent;
 			obstacles.Add(newObstacle.gameObject); 
 		}
 		
@@ -42,14 +45,16 @@ public class ObstacleManager : MonoBehaviour {
 			obsPos.z = Mathf.Clamp(obs.transform.position.z, minmaxZaxis,minmaxZaxis);
 			obs.transform.position = obsPos;
 		}
-		
-		Recycle();
-	}
-	
-	private void Recycle () {
 		GameObject currentObs = (GameObject)obstacles[0];
 		float distance = player.GetDistanceTraveled();
 		if((currentObs.transform.localPosition.x + 10) < distance){
+			Recycle();
+		}
+	}
+	
+	public void Recycle () {
+		GameObject currentObs = (GameObject)obstacles[0];
+		float distance = player.GetDistanceTraveled();
 				GameObject obsRemove = currentObs;
 				float newPositionX = distance + recycleOffset;
 				obsPos.x = 	Random.Range(newPositionX, newPositionX + maxSize.x);
@@ -58,8 +63,6 @@ public class ObstacleManager : MonoBehaviour {
 				obsRemove.transform.position = obsPos;
 				obstacles.Remove(currentObs);
 				obstacles.Add(obsRemove.gameObject);
-				
-		}
 		
 	}
 }
